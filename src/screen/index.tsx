@@ -1,5 +1,6 @@
 import React from "react";
 import ShoeImage from "../assets/image-product-1.jpg";
+// import CartIcon from "../assets/icon-button-cart.svg";
 import CartIcon from "../assets/icon-cart.svg";
 import PlusIcon from "../assets/icon-plus.svg";
 import MinusIcon from "../assets/icon-minus.svg";
@@ -12,7 +13,11 @@ const Screen = () => {
   return (
     <div className="flex gap-[60px] my-[100px]">
       <div>
-        <img src={ShoeImage} alt="" className="rounded-[10px] bg-black max-h-[80%] max-w-[100%] object-cover" />
+        <img
+          src={ShoeImage}
+          alt=""
+          className="rounded-[10px] bg-black max-h-[80%] max-w-[100%] object-cover"
+        />
         <div className="flex items-center justify-between mt-[10px]">
           <img
             src={ProductThmbnail1}
@@ -60,20 +65,24 @@ const Screen = () => {
         </article>
 
         <article className="flex gap-3">
-          <div className="basis-[40%] flex  justify-between items-center bg-grayishBlue h-[40px]">
-            <img
-              src={MinusIcon}
-              alt="minus icon"
-              className="basis-[40%] max-w-[12px] max-h-[12px]"
-            />
-            <span className="basis-[30%]">0</span>
-            <img
-              src={PlusIcon}
-              alt="plus icon"
-              className="basis-[40%] max-w-[12px] max-h-[12px]"
-            />
+          <div className="basis-[30%] flex  justify-between items-center bg-grayishBlue h-[40px] px-[10px] rounded-[5px]">
+            <button className="cursor-pointer basis-[40%] justify-self-start h-[100%]">
+              <img
+                src={MinusIcon}
+                alt="minus icon"
+                className=" max-w-[12px] max-h-[12px]"
+              />
+            </button>
+            <span className="basis-[30%]  text-center">0</span>
+            <button className="cursor-pointer basis-[40%] justify-self-end text-center h-[100%]">
+              <img
+                src={PlusIcon}
+                alt="plus icon"
+                className=" max-w-[12px] max-h-[12px] ml-auto"
+              />
+            </button>
           </div>
-          <button className="bg-primaryOrange basis-[60%] flex justify-center items-center">
+          <button className="bg-primaryOrange basis-[70%] flex justify-center items-center rounded-[5px] gap-3">
             <img src={CartIcon} alt="cart" />
             <span className="text-white">Add to cart</span>
           </button>
