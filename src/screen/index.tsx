@@ -1,46 +1,14 @@
 import React from "react";
-import ShoeImage from "../assets/image-product-1.jpg";
-// import CartIcon from "../assets/icon-button-cart.svg";
 import CartIcon from "../assets/icon-cart.svg";
 import PlusIcon from "../assets/icon-plus.svg";
 import MinusIcon from "../assets/icon-minus.svg";
-import ProductThmbnail1 from "../assets/image-product-1-thumbnail.jpg";
-import ProductThmbnail2 from "../assets/image-product-2-thumbnail.jpg";
-import ProductThmbnail3 from "../assets/image-product-3-thumbnail.jpg";
-import ProductThmbnail4 from "../assets/image-product-4-thumbnail.jpg";
+import Product from "../components/Product";
 
 const Screen = () => {
+
   return (
     <div className="flex gap-[60px] my-[100px]">
-      <div>
-        <img
-          src={ShoeImage}
-          alt=""
-          className="rounded-[10px] bg-black max-h-[80%] max-w-[100%] object-cover"
-        />
-        <div className="flex items-center justify-between mt-[10px]">
-          <img
-            src={ProductThmbnail1}
-            alt=""
-            className="max-w-100px] max-h-[100px] rounded-[5px]"
-          />
-          <img
-            src={ProductThmbnail2}
-            alt=""
-            className="max-w-100px] max-h-[100px] rounded-[5px]"
-          />
-          <img
-            src={ProductThmbnail3}
-            alt=""
-            className="max-w-100px] max-h-[100px] rounded-[5px]"
-          />
-          <img
-            src={ProductThmbnail4}
-            alt=""
-            className="max-w-100px] max-h-[100px] rounded-[5px]"
-          />
-        </div>
-      </div>
+      <Product />
       <div className="my-auto">
         <h5 className="text-primaryOrange mb-[30px] uppercase">
           Sneaker Company
