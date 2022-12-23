@@ -39,7 +39,7 @@ const Header = () => {
         <img src={Avatar} alt="user profile picture" className="max-w-[40px]" />
       </div>
 
-      {showCart && <Cart className="absolute top-[30px]" />}
+      {showCart && <Cart className="absolute top-[50px] right-0" />}
     </nav>
   );
 };
