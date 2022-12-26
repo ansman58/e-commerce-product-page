@@ -3,12 +3,18 @@ import CartIcon from "../assets/icon-cart.svg";
 import PlusIcon from "../assets/icon-plus.svg";
 import MinusIcon from "../assets/icon-minus.svg";
 import Product from "../components/Product";
+import SlideShow from "../components/SlideShow";
+import { SlideShowContext } from "../store/contexts";
 
 const Screen = () => {
+  const [showSlides, setShowSlides] = React.useState(false);
 
   return (
     <div className="flex gap-[60px] my-[100px]">
-      <Product />
+      <SlideShowContext.Provider value={{ showSlides, setShowSlides }}>
+        <Product />
+        {showSlides && <SlideShow />}
+      </SlideShowContext.Provider>
       <div className="my-auto">
         <h5 className="text-primaryOrange mb-[30px] uppercase">
           Sneaker Company
