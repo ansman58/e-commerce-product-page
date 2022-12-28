@@ -6,10 +6,6 @@ import Cart from "../Cart";
 
 const Header = () => {
   const [showCart, setShowCart] = React.useState(false);
-  const { ref } = useClickOutside(
-    showCart,
-    setShowCart as React.Dispatch<React.SetStateAction<boolean>>
-  );
 
   const onShowCart = () => {
     setShowCart((prev: boolean) => !prev);
@@ -42,7 +38,6 @@ const Header = () => {
               alt="cart"
               onClick={onShowCart}
               className="cursor-pointer"
-              ref={ref}
             />
             <img
               src={Avatar}

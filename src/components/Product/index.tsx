@@ -26,7 +26,7 @@ const Product: React.FC<ProductsProps> = ({
   const { showSlides, setShowSlides } = React.useContext(SlideShowContext);
   const [currentImage, setCurrentImage] = React.useState(Product1);
   const [previousImg, setPreviousImg] = React.useState(3);
-  const [nextImg, setNextImg] = React.useState(0);
+  const [index, setIndex] = React.useState(0);
 
   const productThumbnails = [
     { thumbnail: ProductThumbnail1, product: Product1 },
@@ -42,26 +42,36 @@ const Product: React.FC<ProductsProps> = ({
     setCurrentImage(imgSrc);
   };
 
-  const slidesSwitch = () => {
-    // for (let i = 0; i < productThumbnails.length; i++) {
-    //   // setCurrentImage(productThumbnails[i].product);
-    //   console.log(productThumbnails[i]);
-    // }
+  const prev = () => {
+    if (index === 0) {
+      setIndex(productThumbnails.length - 1);
+    } else {
+      setIndex(index - 1);
+    }
   };
+
+  const next = () => {
+    if (index === productThumbnails.length - 1) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1);
+    }
+  };
+
 
   return (
     <div className={className}>
       {showSlides ? (
         <div className="relative">
           <div
-            className="bg-[white] aspect-[1/1] h-[40px] w-[40px] rounded-[50%] flex items-center justify-center cursor-pointer top-[50%] absolute left-[-10px] font-bold"
-            onClick={slidesSwitch}
+            className="bg-[white] aspect-[1/1] h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer top-[50%] absolute left-[-10px] font-bold"
+            onClick={prev}
           >
-            <span className="text-[black]"> ❮ </span>
+            <span className="text-[black] hover:text-[#CA611C]"> ❮ </span>
           </div>
           <div>
             <img
-              src={currentImage}
+              src={productThumbnails?.[index].product}
               alt=""
               className={clsx(
                 productImgClassName,
@@ -69,8 +79,11 @@ const Product: React.FC<ProductsProps> = ({
               )}
             />
           </div>
-          <div className="bg-[white] h-[40px] w-[40px] rounded-[50%] flex items-center justify-center cursor-pointer bottom-[50%] absolute right-[-10px] font-bold">
-            <span className="text-[black]">❯</span>
+          <div
+            className="bg-[white] h-[40px] w-[40px] rounded-[50%] flex items-center justify-center cursor-pointer bottom-[50%] absolute right-[-10px] font-bold"
+            onClick={next}
+          >
+            <span className="text-[black] hover:text-[#CA611C]">❯</span>
           </div>
         </div>
       ) : (

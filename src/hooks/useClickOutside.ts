@@ -8,12 +8,14 @@ export function useClickOutside(
 
   React.useEffect(() => {
     const onClickOutside = (e: MouseEvent) => {
-      if (e.target !== ref.current) {
-        console.log(e.target);
-        setState(false);
+      if (state) {
+        e.target === ref.current ? setState(true) : setState(false);
       }
+      // if (e.target !== ref.current) {
+      //   console.log({ target: e.target, ref: ref.current });
+      //   setState(false);
+      // }
     };
-
     window.addEventListener("click", onClickOutside);
 
     return () => {
