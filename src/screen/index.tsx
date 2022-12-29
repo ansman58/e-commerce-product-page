@@ -1,10 +1,10 @@
 import React from "react";
-import CartIcon from "../assets/icon-cart.svg";
 import PlusIcon from "../assets/icon-plus.svg";
 import MinusIcon from "../assets/icon-minus.svg";
 import Product from "../components/Product";
 import SlideShow from "../components/SlideShow";
 import { SlideShowContext } from "../store/contexts";
+import { CartIcon } from "../components/SVGs";
 
 const Screen = () => {
   const [showSlides, setShowSlides] = React.useState(false);
@@ -30,7 +30,7 @@ const Screen = () => {
 
         <article className="mb-[30px]">
           <div className="flex gap-2 items-center mb-[10px]">
-            <span>$125.00</span>
+            <span className="text-lg font-bold">$125.00</span>
             <span className="bg-paleOrange py-[2px] px-[7px] text-primaryOrange">
               50%
             </span>
@@ -39,8 +39,8 @@ const Screen = () => {
         </article>
 
         <article className="flex gap-3">
-          <div className="basis-[30%] flex  justify-between items-center bg-grayishBlue h-[40px] px-[10px] rounded-[5px]">
-            <button className="cursor-pointer basis-[40%] justify-self-start h-[100%]">
+          <div className="basis-[30%] flex justify-between items-center bg-grayishBlue h-[40px] px-[10px] rounded-[5px]">
+            <button className="cursor-pointer basis-[40%] justify-self-start h-full">
               <img
                 src={MinusIcon}
                 alt="minus icon"
@@ -48,7 +48,7 @@ const Screen = () => {
               />
             </button>
             <span className="basis-[30%]  text-center">0</span>
-            <button className="cursor-pointer basis-[40%] justify-self-end text-center h-[100%]">
+            <button className="cursor-pointer basis-[40%] justify-self-end text-center h-full">
               <img
                 src={PlusIcon}
                 alt="plus icon"
@@ -57,7 +57,7 @@ const Screen = () => {
             </button>
           </div>
           <button className="bg-primaryOrange basis-[70%] flex justify-center items-center rounded-[5px] gap-3">
-            <img src={CartIcon} alt="cart" />
+            <CartIcon fillColor="white" />
             <span className="text-white">Add to cart</span>
           </button>
         </article>

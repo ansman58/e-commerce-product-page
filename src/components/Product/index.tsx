@@ -9,8 +9,7 @@ import Product3 from "../../assets/image-product-3.jpg";
 import Product4 from "../../assets/image-product-4.jpg";
 import { SlideShowContext } from "../../store/contexts";
 import clsx from "clsx";
-import { FaArrowLeft } from "react-icons/fa";
-import { FaArrowRight } from "react-icons/fa";
+import styles from "./Product.module.scss";
 
 interface ProductsProps {
   className?: string;
@@ -25,7 +24,6 @@ const Product: React.FC<ProductsProps> = ({
 }) => {
   const { showSlides, setShowSlides } = React.useContext(SlideShowContext);
   const [currentImage, setCurrentImage] = React.useState(Product1);
-  const [previousImg, setPreviousImg] = React.useState(3);
   const [index, setIndex] = React.useState(0);
 
   const productThumbnails = [
@@ -35,8 +33,8 @@ const Product: React.FC<ProductsProps> = ({
     { thumbnail: ProductThumbnail4, product: Product4 },
   ];
 
-  const handleSlides = (index: number, imgSrc: string) => {
-    if (index > 0) {
+  const handleSlides = (indx: number, imgSrc: string) => {
+    if (indx > 0) {
       setShowSlides(true);
     }
     setCurrentImage(imgSrc);
@@ -58,16 +56,23 @@ const Product: React.FC<ProductsProps> = ({
     }
   };
 
-
   return (
     <div className={className}>
       {showSlides ? (
         <div className="relative">
           <div
-            className="bg-[white] aspect-[1/1] h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer top-[50%] absolute left-[-10px] font-bold"
+            className={clsx(
+              styles.controlBtnContainer,
+              "bg-[white] aspect-[1/1] h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer top-[50%] absolute left-[-10px] font-bold"
+            )}
             onClick={prev}
           >
-            <span className="text-[black] hover:text-[#CA611C]"> ❮ </span>
+            <span
+              className={clsx(styles.btn, "text-[black] hover:text-[#CA611C]")}
+            >
+              {" "}
+              ❮{" "}
+            </span>
           </div>
           <div>
             <img
@@ -80,15 +85,18 @@ const Product: React.FC<ProductsProps> = ({
             />
           </div>
           <div
-            className="bg-[white] h-[40px] w-[40px] rounded-[50%] flex items-center justify-center cursor-pointer bottom-[50%] absolute right-[-10px] font-bold"
+            className={clsx(
+              styles.controlBtnContainer,
+              "bg-[white] h-[40px] w-[40px] rounded-[50%] flex items-center justify-center cursor-pointer bottom-[50%] absolute right-[-10px] font-bold"
+            )}
             onClick={next}
           >
-            <span className="text-[black] hover:text-[#CA611C]">❯</span>
+            <span className={clsx(styles.btn, "text-[black]")}>❯</span>
           </div>
         </div>
       ) : (
         <img
-          src={Product1}
+          src={currentImage}
           alt=""
           className={clsx(
             productImgClassName,
@@ -107,8 +115,8 @@ const Product: React.FC<ProductsProps> = ({
             key={index}
             src={el.thumbnail}
             alt=""
-            className="max-w-100px] max-h-[100px] rounded-[5px] opacity-[0.5] border-2 cursor-pointer"
-            onClick={() => handleSlides(index, el.product)}
+            className="max-w-100px] max-h-[100px] rounded-[5px] hover:opacity-[0.2] hover:border-2 border-[#ca611c] cursor-pointer"
+            onClick={() => handleSlides(index, productThumbnails?.[index].product)}
           />
         ))}
       </div>
