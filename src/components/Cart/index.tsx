@@ -3,6 +3,7 @@ import ProductThumbnail1 from "../../assets/image-product-1-thumbnail.jpg";
 import { FaTrash } from "react-icons/fa";
 import clsx from "clsx";
 import { useClickOutside } from "../../hooks/useClickOutside";
+import { OrdersContext } from "../../store/contexts";
 
 type CartProps = {
   className?: string;
@@ -11,7 +12,8 @@ type CartProps = {
 };
 
 const Cart = ({ className, showCart, setShowCart }: CartProps) => {
-  const [isEmpty, setIsEmpty] = React.useState(true);
+  const { name, price, totalPrice, noOfOrders } =
+    React.useContext(OrdersContext);
   // const { ref } = useClickOutside(
   //   showCart,
   //   setShowCart as React.Dispatch<React.SetStateAction<boolean>>
@@ -28,16 +30,17 @@ const Cart = ({ className, showCart, setShowCart }: CartProps) => {
       <h2 className="mb-[10px] pl-[20px] font-[700]">Cart</h2>
       <hr className="text-grayishBlue" />
       <div className="">
-        {!isEmpty ? (
+        {noOfOrders > 0 ? (
           <div className="pb-[20px] px-[30px] text-grayishBlue">
             <div className="flex pb-4 pt-3 items-center gap-[20px] text-grayishBlue">
               <img src={ProductThumbnail1} alt="" className="max-w-[50px]" />
               <div>
-                <p>Fall Limited Edition Sneakers</p>
+                <p>{name}</p>
                 <p>
-                  $125.00 x 3
+                  ${price.toFixed(2)} x {noOfOrders}
                   <span className="text-black font-[700] ml-[10px]">
-                    $375.00
+                    {/* ${Number(Intl.NumberFormat().format(totalPrice)).toFixed(2)} */}
+                    ${Intl.NumberFormat().format(totalPrice)}
                   </span>
                 </p>
               </div>

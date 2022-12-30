@@ -6,12 +6,16 @@ import SlideShow from "../components/SlideShow";
 import { OrdersContext, SlideShowContext } from "../store/contexts";
 import { CartIcon } from "../components/SVGs";
 
-const Screen = () => {
+interface ScreenProps {
+  onAddToCart?: () => void;
+}
+
+const Screen: React.FC<ScreenProps> = ({ onAddToCart }) => {
   const [showSlides, setShowSlides] = React.useState(false);
+  const { noOfOrders, setNoOfOrders, price, name } =
+    React.useContext(OrdersContext);
 
-  const { noOfOrders, setNoOfOrders } = React.useContext(OrdersContext);
-
-  const handleAddToCart = (isAdd?: boolean) => {
+  const handleNoOfItems = (isAdd?: boolean) => {
     if (!isAdd && noOfOrders > 0) {
       setNoOfOrders(noOfOrders - 1);
     } else {
@@ -29,9 +33,7 @@ const Screen = () => {
         <h5 className="text-primaryOrange mb-[30px] uppercase">
           Sneaker Company
         </h5>
-        <h1 className="text-[1.5rem] font-[700]">
-          Fall Limited Edition Sneakers
-        </h1>
+        <h1 className="text-[1.5rem] font-[700]">{name}</h1>
         <p className="text-grayishBlue mb-[30px]">
           These low-profile sneakers are your perfect casual wear companinon.
           Featuring a durable rubber outer sole, they'll withstand everything
@@ -40,7 +42,7 @@ const Screen = () => {
 
         <article className="mb-[30px]">
           <div className="flex gap-2 items-center mb-[10px]">
-            <span className="text-lg font-bold">$125.00</span>
+            <span className="text-lg font-bold">${price.toFixed(2)}</span>
             <span className="bg-paleOrange py-[2px] px-[7px] text-primaryOrange">
               50%
             </span>
@@ -52,7 +54,7 @@ const Screen = () => {
           <div className="basis-[30%] flex justify-between items-center bg-grayishBlue h-[40px] px-[10px] rounded-[5px]">
             <button
               className="cursor-pointer basis-[40%] justify-self-start h-full"
-              onClick={() => handleAddToCart(false)}
+              onClick={() => handleNoOfItems(false)}
             >
               <img
                 src={MinusIcon}
@@ -63,7 +65,7 @@ const Screen = () => {
             <span className="basis-[30%]  text-center">{noOfOrders}</span>
             <button
               className="cursor-pointer basis-[40%] justify-self-end text-center h-full"
-              onClick={() => handleAddToCart(true)}
+              onClick={() => handleNoOfItems(true)}
             >
               <img
                 src={PlusIcon}
@@ -72,7 +74,10 @@ const Screen = () => {
               />
             </button>
           </div>
-          <button className="bg-primaryOrange basis-[70%] flex justify-center items-center rounded-[5px] gap-3">
+          <button
+            className="bg-primaryOrange basis-[70%] flex justify-center items-center rounded-[5px] gap-3"
+            onClick={onAddToCart}
+          >
             <CartIcon fillColor="white" />
             <span className="text-white">Add to cart</span>
           </button>

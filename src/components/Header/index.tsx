@@ -10,7 +10,6 @@ const Header = () => {
   const { noOfOrders } = React.useContext(OrdersContext);
 
   const onShowCart = () => {
-    console.log("showCart", showCart);
     setShowCart((prev: boolean) => !prev);
   };
 
