@@ -7,7 +7,8 @@ import Cart from "../Cart";
 
 const Header = () => {
   const [showCart, setShowCart] = React.useState(false);
-  const { noOfOrders, cartIsEmpty } = React.useContext(OrdersContext);
+  const { noOfOrders, cartIsEmpty, ordersInCart } =
+    React.useContext(OrdersContext);
 
   const onShowCart = () => {
     setShowCart((prev: boolean) => !prev);
@@ -45,7 +46,7 @@ const Header = () => {
             <img src={CartIcon} alt="cart" className="cursor-pointer" />
             {!cartIsEmpty && (
               <sup className="bg-primaryOrange rounded-[50%] p-2 absolute text-white left-[10px]">
-                {noOfOrders}
+                {ordersInCart}
               </sup>
             )}
           </div>

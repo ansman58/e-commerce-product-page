@@ -52,7 +52,7 @@ const Screen: React.FC<ScreenProps> = ({ setTotalPrice, onAddToCart }) => {
         </article>
 
         <article className="flex gap-3">
-          <div className="basis-[30%] flex justify-between items-center bg-grayishBlue h-[40px] px-[10px] rounded-[5px]">
+          <div className="basis-[30%] flex justify-between items-center bg-[#e7e4e4] h-[40px] px-[10px] rounded-[5px]">
             <button
               className="cursor-pointer basis-[40%] justify-self-start h-full"
               onClick={() => handleNoOfItems(false)}
@@ -71,7 +71,7 @@ const Screen: React.FC<ScreenProps> = ({ setTotalPrice, onAddToCart }) => {
               <img
                 src={PlusIcon}
                 alt="plus icon"
-                className=" max-w-[12px] max-h-[12px] ml-auto"
+                className="max-w-[12px] max-h-[12px] ml-auto"
               />
             </button>
           </div>

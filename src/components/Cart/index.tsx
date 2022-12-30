@@ -12,7 +12,7 @@ type CartProps = {
 };
 
 const Cart = ({ className, showCart, setShowCart }: CartProps) => {
-  const { name, price, totalPrice, noOfOrders, cartIsEmpty } =
+  const { name, price, totalPrice, noOfOrders, cartIsEmpty, ordersInCart } =
     React.useContext(OrdersContext);
   // const { ref } = useClickOutside(
   //   showCart,
@@ -37,9 +37,8 @@ const Cart = ({ className, showCart, setShowCart }: CartProps) => {
               <div>
                 <p>{name}</p>
                 <p>
-                  ${price.toFixed(2)} x {noOfOrders}
+                  ${price.toFixed(2)} x {ordersInCart}
                   <span className="text-black font-[700] ml-[10px]">
-                    {/* ${Number(Intl.NumberFormat().format(totalPrice)).toFixed(2)} */}
                     ${Intl.NumberFormat().format(totalPrice)}
                   </span>
                 </p>

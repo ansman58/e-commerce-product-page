@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  IOrderDetailsContext,
-  IOrdersContext,
-  ISlideShowContext,
-} from "../interfaces/contexts";
+import { IOrdersContext, ISlideShowContext } from "../interfaces/contexts";
 
 const InitialSlideShowContext: ISlideShowContext = {
   showSlides: false,
@@ -20,15 +16,8 @@ const initialOrdersContext: IOrdersContext = {
   totalPrice: 0,
   cartIsEmpty: true,
   setCartIsEmpty: () => {},
+  ordersInCart: 0,
+  setOrdersInCart: () => {},
 };
 
 export const OrdersContext = React.createContext(initialOrdersContext);
-
-const initialOrderDetailsContext: IOrderDetailsContext = {
-  name: "",
-  price: 0,
-};
-
-export const OrderDetailsContext = React.createContext(
-  initialOrderDetailsContext
-);

@@ -10,10 +10,7 @@ export interface IOrdersContext {
   price: number;
   totalPrice: number;
   cartIsEmpty: boolean;
-  setCartIsEmpty: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-export interface IOrderDetailsContext {
-  name: string;
-  price: number;
+  setCartIsEmpty: React.Dispatch<React.SetStateAction<boolean>>;
+  ordersInCart: number;
+  setOrdersInCart: React.Dispatch<React.SetStateAction<number>>;
 }
