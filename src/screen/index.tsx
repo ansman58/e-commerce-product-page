@@ -60,7 +60,7 @@ const Screen = () => {
                 className=" max-w-[12px] max-h-[12px]"
               />
             </button>
-            <span className="basis-[30%]  text-center">0</span>
+            <span className="basis-[30%]  text-center">{noOfOrders}</span>
             <button
               className="cursor-pointer basis-[40%] justify-self-end text-center h-full"
               onClick={() => handleAddToCart(true)}

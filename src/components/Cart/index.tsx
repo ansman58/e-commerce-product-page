@@ -12,10 +12,10 @@ type CartProps = {
 
 const Cart = ({ className, showCart, setShowCart }: CartProps) => {
   const [isEmpty, setIsEmpty] = React.useState(true);
-  const { ref } = useClickOutside(
-    showCart,
-    setShowCart as React.Dispatch<React.SetStateAction<boolean>>
-  );
+  // const { ref } = useClickOutside(
+  //   showCart,
+  //   setShowCart as React.Dispatch<React.SetStateAction<boolean>>
+  // );
 
   return (
     <div

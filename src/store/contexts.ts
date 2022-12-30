@@ -1,9 +1,5 @@
 import React from "react";
-
-interface ISlideShowContext {
-  showSlides: boolean;
-  setShowSlides: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { IOrdersContext, ISlideShowContext } from "../interfaces/contexts";
 
 const InitialSlideShowContext: ISlideShowContext = {
   showSlides: false,
@@ -11,11 +7,6 @@ const InitialSlideShowContext: ISlideShowContext = {
 };
 
 export const SlideShowContext = React.createContext(InitialSlideShowContext);
-
-interface IOrdersContext {
-  noOfOrders: number;
-  setNoOfOrders: React.Dispatch<React.SetStateAction<number>>;
-}
 
 const initialOrdersContext: IOrdersContext = {
   noOfOrders: 0,

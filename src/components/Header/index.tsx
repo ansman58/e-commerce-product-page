@@ -47,7 +47,7 @@ const Header = () => {
             <img
               src={Avatar}
               alt="user profile picture"
-              className="max-w-[30px] hover:border-[red] hover:border-2 rounded-full"
+              className="max-w-[30px] hover:border-primaryOrange hover:border-2 rounded-full"
             />
           </div>
         </div>
