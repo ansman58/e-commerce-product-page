@@ -63,15 +63,14 @@ const Product: React.FC<ProductsProps> = ({
           <div
             className={clsx(
               styles.controlBtnContainer,
-              "bg-[white] aspect-[1/1] h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer top-[50%] absolute left-[-10px] font-bold"
+              "bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer top-[50%] absolute left-[-10px] font-bold"
             )}
             onClick={prev}
           >
             <span
               className={clsx(styles.btn, "text-[black] hover:text-[#CA611C]")}
             >
-              {" "}
-              ❮{" "}
+              ❮
             </span>
           </div>
           <div>
@@ -80,14 +79,14 @@ const Product: React.FC<ProductsProps> = ({
               alt=""
               className={clsx(
                 productImgClassName,
-                "rounded-[10px] bg-black  object-cover"
+                "rounded-md bg-black object-cover"
               )}
             />
           </div>
           <div
             className={clsx(
               styles.controlBtnContainer,
-              "bg-[white] h-[40px] w-[40px] rounded-[50%] flex items-center justify-center cursor-pointer bottom-[50%] absolute right-[-10px] font-bold"
+              "bg-[white] h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer bottom-[50%] absolute right-[-10px] font-bold"
             )}
             onClick={next}
           >
@@ -96,7 +95,7 @@ const Product: React.FC<ProductsProps> = ({
         </div>
       ) : (
         <img
-          src={currentImage}
+          src={productThumbnails?.[index].product}
           alt=""
           className={clsx(
             productImgClassName,
@@ -115,8 +114,10 @@ const Product: React.FC<ProductsProps> = ({
             key={index}
             src={el.thumbnail}
             alt=""
-            className="max-w-100px] max-h-[100px] rounded-[5px] hover:opacity-[0.2] hover:border-2 border-[#ca611c] cursor-pointer"
-            onClick={() => handleSlides(index, productThumbnails?.[index].product)}
+            className="max-w-[100px] max-h-[100px] rounded-[5px] hover:opacity-[0.2] hover:border-2 border-[#ca611c] cursor-pointer"
+            onClick={() =>
+              handleSlides(index, productThumbnails?.[index].product)
+            }
           />
         ))}
       </div>

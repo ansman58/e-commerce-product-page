@@ -3,11 +3,21 @@ import PlusIcon from "../assets/icon-plus.svg";
 import MinusIcon from "../assets/icon-minus.svg";
 import Product from "../components/Product";
 import SlideShow from "../components/SlideShow";
-import { SlideShowContext } from "../store/contexts";
+import { OrdersContext, SlideShowContext } from "../store/contexts";
 import { CartIcon } from "../components/SVGs";
 
 const Screen = () => {
   const [showSlides, setShowSlides] = React.useState(false);
+
+  const { noOfOrders, setNoOfOrders } = React.useContext(OrdersContext);
+
+  const handleAddToCart = (isAdd?: boolean) => {
+    if (!isAdd && noOfOrders > 0) {
+      setNoOfOrders(noOfOrders - 1);
+    } else {
+      setNoOfOrders(noOfOrders + 1);
+    }
+  };
 
   return (
     <div className="flex gap-[60px] my-[100px]">
@@ -40,7 +50,10 @@ const Screen = () => {
 
         <article className="flex gap-3">
           <div className="basis-[30%] flex justify-between items-center bg-grayishBlue h-[40px] px-[10px] rounded-[5px]">
-            <button className="cursor-pointer basis-[40%] justify-self-start h-full">
+            <button
+              className="cursor-pointer basis-[40%] justify-self-start h-full"
+              onClick={() => handleAddToCart(false)}
+            >
               <img
                 src={MinusIcon}
                 alt="minus icon"
@@ -48,7 +61,10 @@ const Screen = () => {
               />
             </button>
             <span className="basis-[30%]  text-center">0</span>
-            <button className="cursor-pointer basis-[40%] justify-self-end text-center h-full">
+            <button
+              className="cursor-pointer basis-[40%] justify-self-end text-center h-full"
+              onClick={() => handleAddToCart(true)}
+            >
               <img
                 src={PlusIcon}
                 alt="plus icon"
