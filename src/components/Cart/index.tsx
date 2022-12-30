@@ -12,7 +12,7 @@ type CartProps = {
 };
 
 const Cart = ({ className, showCart, setShowCart }: CartProps) => {
-  const { name, price, totalPrice, noOfOrders } =
+  const { name, price, totalPrice, noOfOrders, cartIsEmpty } =
     React.useContext(OrdersContext);
   // const { ref } = useClickOutside(
   //   showCart,
@@ -30,7 +30,7 @@ const Cart = ({ className, showCart, setShowCart }: CartProps) => {
       <h2 className="mb-[10px] pl-[20px] font-[700]">Cart</h2>
       <hr className="text-grayishBlue" />
       <div className="">
-        {noOfOrders > 0 ? (
+        {!cartIsEmpty ? (
           <div className="pb-[20px] px-[30px] text-grayishBlue">
             <div className="flex pb-4 pt-3 items-center gap-[20px] text-grayishBlue">
               <img src={ProductThumbnail1} alt="" className="max-w-[50px]" />

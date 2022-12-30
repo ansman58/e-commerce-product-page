@@ -7,10 +7,11 @@ import { OrdersContext, SlideShowContext } from "../store/contexts";
 import { CartIcon } from "../components/SVGs";
 
 interface ScreenProps {
+  setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
   onAddToCart?: () => void;
 }
 
-const Screen: React.FC<ScreenProps> = ({ onAddToCart }) => {
+const Screen: React.FC<ScreenProps> = ({ setTotalPrice, onAddToCart }) => {
   const [showSlides, setShowSlides] = React.useState(false);
   const { noOfOrders, setNoOfOrders, price, name } =
     React.useContext(OrdersContext);

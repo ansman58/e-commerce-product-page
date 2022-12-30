@@ -18,6 +18,8 @@ const initialOrdersContext: IOrdersContext = {
   name: "",
   price: 0,
   totalPrice: 0,
+  cartIsEmpty: true,
+  setCartIsEmpty: () => {},
 };
 
 export const OrdersContext = React.createContext(initialOrdersContext);

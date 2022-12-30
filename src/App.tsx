@@ -1,5 +1,4 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
 import Screen from "./screen";
 import Header from "./components/Header";
@@ -8,11 +7,15 @@ import { OrdersContext } from "./store/contexts";
 function App() {
   const [noOfOrders, setNoOfOrders] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [cartIsEmpty, setCartIsEmpty] = useState(true);
   const PRODUCT_PRICE = 125;
   const PRODUCT_NAME = "Fall Limited Edition Sneakers";
 
   const onAddToCart = () => {
     setTotalPrice(PRODUCT_PRICE * noOfOrders);
+    if (noOfOrders > 0) {
+      setCartIsEmpty(false);
+    }
   };
 
   return (
@@ -24,6 +27,8 @@ function App() {
           totalPrice,
           name: PRODUCT_NAME,
           price: PRODUCT_PRICE,
+          cartIsEmpty,
+          setCartIsEmpty,
         }}
       >
         <Header />
