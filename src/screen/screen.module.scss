@@ -1,16 +1,33 @@
-.wrapper {
-  @media (max-width: 800px) {
-    // gap: 30px !important;
-    // flex-direction: column;
+@media (max-width: 800px) {
+  .wrapper {
     display: block !important;
+    margin-block: unset !important;
   }
-}
 
-.thumbnails {
+  .thumbnails {
     background-color: red;
-  @media (max-width: 800px) {
     display: none !important;
     visibility: hidden;
     background-color: red !important;
+  }
+
+  .right {
+    padding-inline: 2rem;
+  }
+
+  .btns {
+    // flex-direction: column;
+    display: block !important;
+  }
+
+  .price {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .cartBtn {
+    width: 100%;
+    height: 40px;
+    margin-top: 0.75rem;
   }
 }

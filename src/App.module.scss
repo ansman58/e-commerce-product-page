@@ -6,4 +6,9 @@
   @media (max-width: 910px) {
     max-width: 90% !important;
   }
+
+  @media (max-width: 800px) {
+    max-width: 100% !important;
+    min-height: unset !important;
+  }
 }

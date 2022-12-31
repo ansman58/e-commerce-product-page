@@ -79,6 +79,7 @@ const Product: React.FC<ProductsProps> = ({
               alt=""
               className={clsx(
                 productImgClassName,
+                styles.productImg,
                 "rounded-md bg-black object-cover"
               )}
             />
@@ -99,6 +100,7 @@ const Product: React.FC<ProductsProps> = ({
           alt=""
           className={clsx(
             productImgClassName,
+            styles.productImg,
             "rounded-[10px] bg-black object-cover"
           )}
         />

@@ -7,9 +7,11 @@ import { OrdersContext } from "../../store/contexts";
 import Cart from "../Cart";
 import style from "./Header.module.scss";
 import { FaBars } from "react-icons/fa";
+import MobileMenu from "../MobileMenu";
 
 const Header = () => {
   const [showCart, setShowCart] = React.useState(false);
+  const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const { noOfOrders, cartIsEmpty, ordersInCart } =
     React.useContext(OrdersContext);
 
@@ -25,11 +27,15 @@ const Header = () => {
     "Contact",
   ];
 
+  const toggleMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
+  };
+
   return (
     <nav className="  relative">
       <div className="flex justify-between py-5">
         <div className={clsx(style.header, "basis-[80%] flex items-center")}>
-          <FaBars className={style.hamburger} />
+          <FaBars className={style.hamburger} onClick={toggleMobileMenu} />
           <h1
             className={clsx(
               style.title,
@@ -83,6 +89,7 @@ const Header = () => {
           className="absolute top-[60px] right-0"
         />
       )}
+      {showMobileMenu && <MobileMenu />}
     </nav>
   );
 };
