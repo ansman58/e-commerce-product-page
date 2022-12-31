@@ -1,0 +1,9 @@
+.app {
+  @media (max-width: 1096px) {
+    max-width: 80% !important;
+  }
+
+  @media (max-width: 910px) {
+    max-width: 90% !important;
+  }
+}

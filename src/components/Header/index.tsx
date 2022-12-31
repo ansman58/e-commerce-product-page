@@ -1,9 +1,12 @@
+import clsx from "clsx";
 import React from "react";
 import CartIcon from "../../assets/icon-cart.svg";
 import Avatar from "../../assets/image-avatar.png";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { OrdersContext } from "../../store/contexts";
 import Cart from "../Cart";
+import style from "./Header.module.scss";
+import { FaBars } from "react-icons/fa";
 
 const Header = () => {
   const [showCart, setShowCart] = React.useState(false);
@@ -25,11 +28,19 @@ const Header = () => {
   return (
     <nav className="  relative">
       <div className="flex justify-between py-5">
-        <div className="basis-[80%] flex items-center">
-          <h1 className="basis-[20%] font-[700] text-3xl box-content">
+        <div className={clsx(style.header, "basis-[80%] flex items-center")}>
+          <FaBars className={style.hamburger} />
+          <h1
+            className={clsx(
+              style.title,
+              "basis-[20%] font-[700] text-3xl box-content"
+            )}
+          >
             Sneakers
           </h1>
-          <ul className="basis-[70%] flex gap-[30px] gap">
+          <ul
+            className={clsx(style.menuList, "basis-[70%] flex gap-[30px] gap")}
+          >
             {menuList.map((item: string, index: number) => (
               <li
                 className="my-auto cursor-pointer hover:border-b-2 hover:border-[#d57474]"
@@ -41,7 +52,12 @@ const Header = () => {
           </ul>
         </div>
 
-        <div className="basis-[20%] flex justify-end gap-[30px] items-center">
+        <div
+          className={clsx(
+            style.icon,
+            "basis-[20%] flex justify-end gap-[30px] items-center"
+          )}
+        >
           <div className="flex relative cursor-pointer" onClick={onShowCart}>
             <img src={CartIcon} alt="cart" className="cursor-pointer" />
             {!cartIsEmpty && (

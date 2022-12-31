@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 import Product1 from "../../assets/image-product-1.jpg";
 import ProductThumbnail1 from "../../assets/image-product-1-thumbnail.jpg";
 import ProductThumbnail2 from "../../assets/image-product-2-thumbnail.jpg";
@@ -8,7 +9,6 @@ import Product2 from "../../assets/image-product-2.jpg";
 import Product3 from "../../assets/image-product-3.jpg";
 import Product4 from "../../assets/image-product-4.jpg";
 import { SlideShowContext } from "../../store/contexts";
-import clsx from "clsx";
 import styles from "./Product.module.scss";
 
 interface ProductsProps {
@@ -99,13 +99,14 @@ const Product: React.FC<ProductsProps> = ({
           alt=""
           className={clsx(
             productImgClassName,
-            "rounded-[10px] bg-black  object-cover"
+            "rounded-[10px] bg-black object-cover"
           )}
         />
       )}
       <div
         className={clsx(
-          slidesClassName,
+          styles.thumbnails,
+          // slidesClassName,
           "flex items-center justify-between mt-[10px]"
         )}
       >
@@ -114,10 +115,11 @@ const Product: React.FC<ProductsProps> = ({
             key={index}
             src={el.thumbnail}
             alt=""
-            className="max-w-[100px] max-h-[100px] rounded-[5px] hover:opacity-[0.2] hover:border-2 border-[#ca611c] cursor-pointer"
-            onClick={() =>
-              handleSlides(index, productThumbnails?.[index].product)
-            }
+            className={clsx(
+              { ["bg-[red] z-100"]: showSlides },
+              "max-w-[100px] max-h-[100px] rounded-[5px] hover:opacity-[0.2] hover:border-2 border-[#ca611c] cursor-pointer"
+            )}
+            onClick={() => handleSlides(index, el.product)}
           />
         ))}
       </div>

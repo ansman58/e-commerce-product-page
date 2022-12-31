@@ -1,0 +1,16 @@
+.wrapper {
+  @media (max-width: 800px) {
+    // gap: 30px !important;
+    // flex-direction: column;
+    display: block !important;
+  }
+}
+
+.thumbnails {
+    background-color: red;
+  @media (max-width: 800px) {
+    display: none !important;
+    visibility: hidden;
+    background-color: red !important;
+  }
+}

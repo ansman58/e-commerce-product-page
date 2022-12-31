@@ -20,6 +20,9 @@ module.exports = {
       black: "hsl(0, 0%, 0%)",
       counterBg: "hsla(0, 0%, 0%, 0.75)",
     },
+    screens: {
+      md: "768px",
+    },
     extend: {},
   },
   plugins: [],

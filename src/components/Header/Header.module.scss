@@ -1,0 +1,21 @@
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .menuList {
+    display: none !important;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .header {
+    flex-basis: 60% !important;
+  }
+
+  .icon {
+    flex-basis: 40% !important;
+  }
+}

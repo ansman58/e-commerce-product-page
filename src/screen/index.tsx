@@ -5,6 +5,8 @@ import Product from "../components/Product";
 import SlideShow from "../components/SlideShow";
 import { OrdersContext, SlideShowContext } from "../store/contexts";
 import { CartIcon } from "../components/SVGs";
+import styles from "./screen.module.scss"
+import clsx from "clsx";
 
 interface ScreenProps {
   setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
@@ -25,7 +27,7 @@ const Screen: React.FC<ScreenProps> = ({ setTotalPrice, onAddToCart }) => {
   };
 
   return (
-    <div className="flex gap-[60px] my-[100px]">
+    <div className={clsx(styles.wrapper, "flex gap-[60px] my-[100px]")}>
       <SlideShowContext.Provider value={{ showSlides, setShowSlides }}>
         <Product />
         {showSlides && <SlideShow />}

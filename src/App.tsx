@@ -1,9 +1,9 @@
 import { useState } from "react";
-import "./App.css";
 import Screen from "./screen";
 import Header from "./components/Header";
 import { OrdersContext } from "./store/contexts";
-
+import styles from "./App.module.scss";
+import clsx from "clsx";
 function App() {
   const [noOfOrders, setNoOfOrders] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -21,7 +21,12 @@ function App() {
   };
 
   return (
-    <div className="max-w-[70%] min-h-[100vh] mx-auto text-veryDarkBlue ">
+    <div
+      className={clsx(
+        styles.app,
+        "max-w-[70%] min-h-[100vh] mx-auto text-veryDarkBlue"
+      )}
+    >
       <OrdersContext.Provider
         value={{
           noOfOrders,
