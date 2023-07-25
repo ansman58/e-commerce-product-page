@@ -10,7 +10,11 @@ const SlideShow = () => {
         <div className="flex justify-end">
           <CloseIcon fillColor="white" className="mb-4" />
         </div>
-        <Product className="" productImgClassName="max-w-[100%]" />
+        <Product
+          className=""
+          productImgClassName="max-w-[100%]"
+          showNav
+        />
       </div>
     </div>
   );

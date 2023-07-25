@@ -13,18 +13,19 @@ import styles from "./Product.module.scss";
 
 interface ProductsProps {
   className?: string;
-  slidesClassName?: string;
   productImgClassName?: string;
+  showNav?: true;
 }
 
 const Product: React.FC<ProductsProps> = ({
   className,
-  slidesClassName,
   productImgClassName,
+  showNav,
 }) => {
   const { showSlides, setShowSlides } = React.useContext(SlideShowContext);
-  const [currentImage, setCurrentImage] = React.useState(Product1);
   const [index, setIndex] = React.useState(0);
+  const [active, setActive] = React.useState<boolean | number>(false);
+  const [currentImage, setCurrentImage] = React.useState(Product1);
 
   const productThumbnails = [
     { thumbnail: ProductThumbnail1, product: Product1 },
@@ -34,32 +35,39 @@ const Product: React.FC<ProductsProps> = ({
   ];
 
   const handleSlides = (indx: number, imgSrc: string) => {
-    if (indx > 0) {
-      setShowSlides(true);
-    }
     setCurrentImage(imgSrc);
+    setShowSlides(true);
+    setActive(indx);
   };
 
   const prev = () => {
     if (index === 0) {
       setIndex(productThumbnails.length - 1);
+      setCurrentImage(productThumbnails?.[index].product);
+      setActive(index);
     } else {
       setIndex(index - 1);
+      setCurrentImage(productThumbnails?.[index].product);
+      setActive(index);
     }
   };
 
   const next = () => {
     if (index === productThumbnails.length - 1) {
       setIndex(0);
+      setCurrentImage(productThumbnails?.[index].product);
+      setActive(index);
     } else {
       setIndex(index + 1);
+      setCurrentImage(productThumbnails?.[index].product);
+      setActive(index);
     }
   };
 
   return (
     <div className={className}>
-      {showSlides ? (
-        <div className="relative">
+      <div className="relative">
+        {showNav && (
           <div
             className={clsx(
               styles.controlBtnContainer,
@@ -73,17 +81,19 @@ const Product: React.FC<ProductsProps> = ({
               ❮
             </span>
           </div>
-          <div>
-            <img
-              src={productThumbnails?.[index].product}
-              alt=""
-              className={clsx(
-                productImgClassName,
-                styles.productImg,
-                "rounded-md bg-black object-cover"
-              )}
-            />
-          </div>
+        )}
+        <div>
+          <img
+            src={currentImage}
+            alt="Product image"
+            className={clsx(
+              productImgClassName,
+              styles.productImg,
+              "rounded-md bg-black object-cover"
+            )}
+          />
+        </div>
+        {showNav && (
           <div
             className={clsx(
               styles.controlBtnContainer,
@@ -93,22 +103,12 @@ const Product: React.FC<ProductsProps> = ({
           >
             <span className={clsx(styles.btn, "text-[black]")}>❯</span>
           </div>
-        </div>
-      ) : (
-        <img
-          src={productThumbnails?.[index].product}
-          alt=""
-          className={clsx(
-            productImgClassName,
-            styles.productImg,
-            "rounded-[10px] bg-black object-cover"
-          )}
-        />
-      )}
+        )}
+      </div>
+
       <div
         className={clsx(
           styles.thumbnails,
-          // slidesClassName,
           "flex items-center justify-between mt-[10px]"
         )}
       >
@@ -116,10 +116,13 @@ const Product: React.FC<ProductsProps> = ({
           <img
             key={index}
             src={el.thumbnail}
-            alt=""
+            alt="product thumnail"
             className={clsx(
-              { ["bg-[red] z-100"]: showSlides },
-              "max-w-[100px] max-h-[100px] rounded-[5px] hover:opacity-[0.2] hover:border-2 border-[#ca611c] cursor-pointer"
+              {
+                ["z-100"]: showSlides,
+                ["border-2 border-[white]"]: active === index,
+              },
+              "max-w-[100px] max-h-[100px] rounded-[5px] hover:opacity-[0.67] hover:border-2 border-[#ca611c] cursor-pointer"
             )}
             onClick={() => handleSlides(index, el.product)}
           />
