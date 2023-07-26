@@ -3,17 +3,16 @@ import PlusIcon from "../assets/icon-plus.svg";
 import MinusIcon from "../assets/icon-minus.svg";
 import Product from "../components/Product";
 import SlideShow from "../components/SlideShow";
-import { OrdersContext, SlideShowContext } from "../store/contexts";
+import { SlideShowContext } from "../store/contexts";
 import { CartIcon } from "../components/SVGs";
 import styles from "./screen.module.scss";
 import clsx from "clsx";
-import { NUM_OF_ORDERS, TOTAL_PRICE } from "../constants";
+import { NUM_OF_ORDERS, PRODUCT_NAME, TOTAL_PRICE } from "../constants";
 
 interface ScreenProps {}
 
 const Screen: React.FC<ScreenProps> = () => {
   const [showSlides, setShowSlides] = React.useState(false);
-  const { price, name } = React.useContext(OrdersContext);
   const [itemsAdded, setItemsAdded] = React.useState(0);
   const PRODUCT_PRICE = 125;
 
@@ -41,7 +40,7 @@ const Screen: React.FC<ScreenProps> = () => {
         <h5 className="text-primaryOrange mb-[30px] uppercase">
           Sneaker Company
         </h5>
-        <h1 className="text-[1.5rem] font-[700]">{name}</h1>
+        <h1 className="text-[1.5rem] font-[700]">{PRODUCT_NAME}</h1>
         <p className="text-grayishBlue mb-[30px]">
           These low-profile sneakers are your perfect casual wear companinon.
           Featuring a durable rubber outer sole, they'll withstand everything
@@ -50,7 +49,9 @@ const Screen: React.FC<ScreenProps> = () => {
 
         <article className={clsx(styles.price, "mb-[30px]")}>
           <div className="flex gap-2 items-center mb-[10px]">
-            <span className="text-lg font-bold">${price.toFixed(2)}</span>
+            <span className="text-lg font-bold">
+              ${PRODUCT_PRICE.toFixed(2)}
+            </span>
             <span className="bg-paleOrange py-[2px] px-[7px] text-primaryOrange">
               50%
             </span>

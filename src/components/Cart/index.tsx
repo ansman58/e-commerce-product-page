@@ -3,7 +3,7 @@ import ProductThumbnail1 from "../../assets/image-product-1-thumbnail.jpg";
 import { FaTrash } from "react-icons/fa";
 import clsx from "clsx";
 import { OrdersContext } from "../../store/contexts";
-import { NUM_OF_ORDERS, TOTAL_PRICE } from "../../constants";
+import { NUM_OF_ORDERS, PRODUCT_NAME, TOTAL_PRICE } from "../../constants";
 
 type CartProps = {
   className?: string;
@@ -30,7 +30,7 @@ const Cart = ({ className }: CartProps) => {
             <div className="flex pb-4 pt-3 items-center gap-[20px] text-grayishBlue">
               <img src={ProductThumbnail1} alt="" className="max-w-[50px]" />
               <div>
-                <p>{name}</p>
+                <p>{PRODUCT_NAME}</p>
                 <p>
                   ${price.toFixed(2)} x {noOfOrders}
                   <span className="text-black font-[700] ml-[10px]">
