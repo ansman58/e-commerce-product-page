@@ -2,22 +2,18 @@ import React from "react";
 import ProductThumbnail1 from "../../assets/image-product-1-thumbnail.jpg";
 import { FaTrash } from "react-icons/fa";
 import clsx from "clsx";
-import { useClickOutside } from "../../hooks/useClickOutside";
 import { OrdersContext } from "../../store/contexts";
+import { NUM_OF_ORDERS, TOTAL_PRICE } from "../../constants";
 
 type CartProps = {
   className?: string;
-  showCart: boolean;
-  setShowCart?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Cart = ({ className, showCart, setShowCart }: CartProps) => {
-  const { name, price, totalPrice, noOfOrders, cartIsEmpty, ordersInCart } =
-    React.useContext(OrdersContext);
-  // const { ref } = useClickOutside(
-  //   showCart,
-  //   setShowCart as React.Dispatch<React.SetStateAction<boolean>>
-  // );
+const Cart = ({ className }: CartProps) => {
+  const { name, price } = React.useContext(OrdersContext);
+
+  const noOfOrders = Number(localStorage.getItem(NUM_OF_ORDERS));
+  const totalPrice = Number(localStorage.getItem(TOTAL_PRICE));
 
   return (
     <div
@@ -25,19 +21,18 @@ const Cart = ({ className, showCart, setShowCart }: CartProps) => {
         className,
         "bg-white shadow-lg pt-[10px] grid min-w-[250px] rounded-[5px]"
       )}
-      // ref={cartRef}
     >
       <h2 className="mb-[10px] pl-[20px] font-[700]">Cart</h2>
       <hr className="text-grayishBlue" />
       <div className="">
-        {!cartIsEmpty ? (
+        {Number(noOfOrders) ? (
           <div className="pb-[20px] px-[30px] text-grayishBlue">
             <div className="flex pb-4 pt-3 items-center gap-[20px] text-grayishBlue">
               <img src={ProductThumbnail1} alt="" className="max-w-[50px]" />
               <div>
                 <p>{name}</p>
                 <p>
-                  ${price.toFixed(2)} x {ordersInCart}
+                  ${price.toFixed(2)} x {noOfOrders}
                   <span className="text-black font-[700] ml-[10px]">
                     ${Intl.NumberFormat().format(totalPrice)}
                   </span>

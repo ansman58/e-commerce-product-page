@@ -7,23 +7,28 @@ import { OrdersContext, SlideShowContext } from "../store/contexts";
 import { CartIcon } from "../components/SVGs";
 import styles from "./screen.module.scss";
 import clsx from "clsx";
+import { NUM_OF_ORDERS, TOTAL_PRICE } from "../constants";
 
-interface ScreenProps {
-  setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
-  onAddToCart?: () => void;
-}
+interface ScreenProps {}
 
-const Screen: React.FC<ScreenProps> = ({ setTotalPrice, onAddToCart }) => {
+const Screen: React.FC<ScreenProps> = () => {
   const [showSlides, setShowSlides] = React.useState(false);
-  const { noOfOrders, setNoOfOrders, price, name } =
-    React.useContext(OrdersContext);
+  const { price, name } = React.useContext(OrdersContext);
+  const [itemsAdded, setItemsAdded] = React.useState(0);
+  const PRODUCT_PRICE = 125;
 
-  const handleNoOfItems = (isAdd?: boolean) => {
-    if (!isAdd && noOfOrders > 0) {
-      setNoOfOrders(noOfOrders - 1);
-    } else {
-      setNoOfOrders(noOfOrders + 1);
-    }
+  const onSubstract = () => {
+    if (itemsAdded <= 0) return;
+    setItemsAdded(itemsAdded - 1);
+  };
+
+  const onAdd = () => {
+    setItemsAdded(itemsAdded + 1);
+  };
+
+  const onAddToCart = () => {
+    localStorage.setItem(NUM_OF_ORDERS, String(itemsAdded));
+    localStorage.setItem(TOTAL_PRICE, String(PRODUCT_PRICE * itemsAdded));
   };
 
   return (
@@ -57,7 +62,7 @@ const Screen: React.FC<ScreenProps> = ({ setTotalPrice, onAddToCart }) => {
           <div className="basis-[30%] flex justify-between items-center bg-[#e7e4e4] h-[40px] px-[10px] rounded-[5px]">
             <button
               className="cursor-pointer basis-[40%] justify-self-start h-full"
-              onClick={() => handleNoOfItems(false)}
+              onClick={onSubstract}
             >
               <img
                 src={MinusIcon}
@@ -65,10 +70,10 @@ const Screen: React.FC<ScreenProps> = ({ setTotalPrice, onAddToCart }) => {
                 className=" max-w-[12px] max-h-[12px]"
               />
             </button>
-            <span className="basis-[30%]  text-center">{noOfOrders}</span>
+            <span className="basis-[30%]  text-center">{itemsAdded}</span>
             <button
               className="cursor-pointer basis-[40%] justify-self-end text-center h-full"
-              onClick={() => handleNoOfItems(true)}
+              onClick={onAdd}
             >
               <img
                 src={PlusIcon}

@@ -2,18 +2,16 @@ import clsx from "clsx";
 import React from "react";
 import CartIcon from "../../assets/icon-cart.svg";
 import Avatar from "../../assets/image-avatar.png";
-import { useClickOutside } from "../../hooks/useClickOutside";
-import { OrdersContext } from "../../store/contexts";
 import Cart from "../Cart";
 import style from "./Header.module.scss";
 import { FaBars } from "react-icons/fa";
 import MobileMenu from "../MobileMenu";
+import { NUM_OF_ORDERS } from "../../constants";
 
 const Header = () => {
   const [showCart, setShowCart] = React.useState(false);
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
-  const { noOfOrders, cartIsEmpty, ordersInCart } =
-    React.useContext(OrdersContext);
+  const noOfOrders = localStorage.getItem(NUM_OF_ORDERS);
 
   const onShowCart = () => {
     setShowCart((prev: boolean) => !prev);
@@ -66,9 +64,9 @@ const Header = () => {
         >
           <div className="flex relative cursor-pointer" onClick={onShowCart}>
             <img src={CartIcon} alt="cart" className="cursor-pointer" />
-            {!cartIsEmpty && (
+            {noOfOrders && (
               <sup className="bg-primaryOrange rounded-[50%] p-2 absolute text-white left-[10px]">
-                {ordersInCart}
+                {noOfOrders}
               </sup>
             )}
           </div>
@@ -82,13 +80,7 @@ const Header = () => {
 
       <hr className="text-grayishBlue" />
 
-      {showCart && (
-        <Cart
-          showCart={showCart}
-          setShowCart={setShowCart}
-          className="absolute top-[60px] right-0"
-        />
-      )}
+      {showCart && <Cart className="absolute top-[60px] right-0" />}
       {showMobileMenu && <MobileMenu />}
     </nav>
   );
