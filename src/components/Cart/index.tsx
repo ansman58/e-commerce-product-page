@@ -2,16 +2,18 @@ import React from "react";
 import ProductThumbnail1 from "../../assets/image-product-1-thumbnail.jpg";
 import { FaTrash } from "react-icons/fa";
 import clsx from "clsx";
-import { OrdersContext } from "../../store/contexts";
-import { NUM_OF_ORDERS, PRODUCT_NAME, TOTAL_PRICE } from "../../constants";
+import {
+  NUM_OF_ORDERS,
+  PRODUCT_NAME,
+  PRODUCT_PRICE,
+  TOTAL_PRICE,
+} from "../../constants";
 
 type CartProps = {
   className?: string;
 };
 
 const Cart = ({ className }: CartProps) => {
-  const { name, price } = React.useContext(OrdersContext);
-
   const noOfOrders = Number(localStorage.getItem(NUM_OF_ORDERS));
   const totalPrice = Number(localStorage.getItem(TOTAL_PRICE));
 
@@ -32,7 +34,7 @@ const Cart = ({ className }: CartProps) => {
               <div>
                 <p>{PRODUCT_NAME}</p>
                 <p>
-                  ${price.toFixed(2)} x {noOfOrders}
+                  ${PRODUCT_PRICE.toFixed(2)} x {noOfOrders}
                   <span className="text-black font-[700] ml-[10px]">
                     ${Intl.NumberFormat().format(totalPrice)}
                   </span>

@@ -7,14 +7,18 @@ import { SlideShowContext } from "../store/contexts";
 import { CartIcon } from "../components/SVGs";
 import styles from "./screen.module.scss";
 import clsx from "clsx";
-import { NUM_OF_ORDERS, PRODUCT_NAME, TOTAL_PRICE } from "../constants";
+import {
+  NUM_OF_ORDERS,
+  PRODUCT_NAME,
+  PRODUCT_PRICE,
+  TOTAL_PRICE,
+} from "../constants";
 
 interface ScreenProps {}
 
 const Screen: React.FC<ScreenProps> = () => {
   const [showSlides, setShowSlides] = React.useState(false);
   const [itemsAdded, setItemsAdded] = React.useState(0);
-  const PRODUCT_PRICE = 125;
 
   const onSubstract = () => {
     if (itemsAdded <= 0) return;
