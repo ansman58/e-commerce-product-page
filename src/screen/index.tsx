@@ -13,16 +13,25 @@ import {
   TOTAL_PRICE,
 } from "../constants";
 
-interface ScreenProps {}
+interface ScreenProps {
+  noOfOrders: number;
+  totalPrice: number;
+  setNoOfOrders: React.Dispatch<number>;
+  setTotalPrice: React.Dispatch<number>;
+}
 
-const Screen: React.FC<ScreenProps> = () => {
+const Screen: React.FC<ScreenProps> = ({
+  noOfOrders,
+  setNoOfOrders,
+  totalPrice,
+  setTotalPrice,
+}) => {
   const [showSlides, setShowSlides] = React.useState(false);
   const [itemsAdded, setItemsAdded] = React.useState(0);
   const [close, setClose] = React.useState(false);
 
-  const initialNumOfItems = Number(localStorage.getItem(NUM_OF_ORDERS));
-
-  const initialTotalAmount = Number(localStorage.getItem(TOTAL_PRICE));
+  // const initialNumOfItems = Number(localStorage.getItem(NUM_OF_ORDERS));
+  // const initialTotalAmount = Number(localStorage.getItem(TOTAL_PRICE));
 
   const onSubstract = () => {
     if (itemsAdded <= 0) return;
@@ -34,15 +43,14 @@ const Screen: React.FC<ScreenProps> = () => {
   };
 
   const onAddToCart = () => {
-    localStorage.setItem(NUM_OF_ORDERS, String(initialNumOfItems + itemsAdded));
-    localStorage.setItem(
-      TOTAL_PRICE,
-      String(PRODUCT_PRICE * itemsAdded + initialTotalAmount)
-    );
+    setNoOfOrders(noOfOrders + itemsAdded);
+    setTotalPrice(Number(PRODUCT_PRICE * noOfOrders + itemsAdded));
+    // localStorage.setItem(NUM_OF_ORDERS, String(noOfOrders));
+    // localStorage.setItem(TOTAL_PRICE, String(totalPrice));
   };
 
   return (
-    <div className="flex gap-[60px] my-[100px] tablet:px-0 tablet:my-0 tablet:block">
+    <div className="flex gap-[60px] my-[100px] tablet:px-0 tablet:my-0 tablet:block mid900:my-[30px]">
       <SlideShowContext.Provider value={{ showSlides, setShowSlides }}>
         <Product setClose={setClose} />
         {showSlides && <SlideShow close={close} setClose={setClose} />}

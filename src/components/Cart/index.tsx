@@ -11,11 +11,13 @@ import {
 
 type CartProps = {
   className?: string;
+  noOfOrders: number;
+  totalPrice: number;
 };
 
-const Cart = ({ className }: CartProps) => {
-  const noOfOrders = Number(localStorage.getItem(NUM_OF_ORDERS));
-  const totalPrice = Number(localStorage.getItem(TOTAL_PRICE));
+const Cart = ({ className, noOfOrders, totalPrice }: CartProps) => {
+  // const noOfOrders = Number(localStorage.getItem(NUM_OF_ORDERS));
+  // const totalPrice = Number(localStorage.getItem(TOTAL_PRICE));
 
   return (
     <div
