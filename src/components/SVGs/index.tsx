@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import React from "react";
-import { SlideShowContext } from "../../store/contexts";
 import styles from "./SVGs.module.scss";
 
 interface IconProps {
@@ -8,6 +7,8 @@ interface IconProps {
   height?: string;
   width?: string;
   className?: string;
+  setClose?: React.Dispatch<boolean>;
+  onBtnClick?: () => void;
 }
 
 export const CartIcon: React.FC<IconProps> = ({ fillColor }) => {
@@ -27,16 +28,21 @@ export const CloseIcon: React.FC<IconProps> = ({
   height,
   width,
   className,
+  onBtnClick,
 }) => {
-  const { setShowSlides } = React.useContext(SlideShowContext);
-
   return (
     <svg
       width={width ?? "14"}
       height={height ?? "15"}
       xmlns="http://www.w3.org/2000/svg"
-      className={clsx(styles.closeIcon, className, "cursor-pointer scale-[1.5]")}
-      onClick={() => setShowSlides(false)}
+      className={clsx(
+        styles.closeIcon,
+        className,
+        "cursor-pointer scale-[1.5]"
+      )}
+      onClick={() => {
+        onBtnClick?.();
+      }}
     >
       <path
         d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"

@@ -1,27 +1,26 @@
 import React from "react";
 
-export function useClickOutside(
-  state: boolean,
-  setState: React.Dispatch<React.SetStateAction<boolean>>
-) {
-  const ref = React.useRef<any>(null);
+export const useClickOutside = () => {
+  const [closeMenu, setCloseMenu] = React.useState(false);
+  const menuRef = React.useRef<any>(null);
 
   React.useEffect(() => {
-    const onClickOutside = (e: MouseEvent) => {
-      if (state) {
-        e.target === ref.current ? setState(true) : setState(false);
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setCloseMenu(false);
       }
-      // if (e.target !== ref.current) {
-      //   console.log({ target: e.target, ref: ref.current });
-      //   setState(false);
-      // }
     };
-    window.addEventListener("click", onClickOutside);
 
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      window.removeEventListener("click", onClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [state]);
+  }, []);
 
-  return { ref };
-}
+  return {
+    closeMenu,
+    menuRef,
+    setCloseMenu,
+  };
+};
+

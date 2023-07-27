@@ -18,6 +18,7 @@ interface ScreenProps {}
 const Screen: React.FC<ScreenProps> = () => {
   const [showSlides, setShowSlides] = React.useState(false);
   const [itemsAdded, setItemsAdded] = React.useState(0);
+  const [close, setClose] = React.useState(false);
 
   const initialNumOfItems = Number(localStorage.getItem(NUM_OF_ORDERS));
 
@@ -43,8 +44,8 @@ const Screen: React.FC<ScreenProps> = () => {
   return (
     <div className="flex gap-[60px] my-[100px] tablet:px-0 tablet:my-0 tablet:block">
       <SlideShowContext.Provider value={{ showSlides, setShowSlides }}>
-        <Product />
-        {showSlides && <SlideShow />}
+        <Product setClose={setClose} />
+        {showSlides && <SlideShow close={close} setClose={setClose} />}
       </SlideShowContext.Provider>
       <div className={"my-auto max-w-[400px] tablet:min-w-full tablet:px-3"}>
         <h5 className="text-primaryOrange mb-[30px] uppercase">

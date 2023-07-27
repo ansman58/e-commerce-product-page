@@ -67,7 +67,7 @@ const Header = () => {
       <hr className="text-grayishBlue" />
 
       {showCart && <Cart className="absolute top-[60px] right-0" />}
-      {showMobileMenu && <MobileMenu />}
+      {showMobileMenu && <MobileMenu setShowMobileMenu={setShowMobileMenu} />}
     </nav>
   );
 };

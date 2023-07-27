@@ -9,22 +9,26 @@ import Product2 from "../../assets/image-product-2.jpg";
 import Product3 from "../../assets/image-product-3.jpg";
 import Product4 from "../../assets/image-product-4.jpg";
 import { SlideShowContext } from "../../store/contexts";
+import { useWindowSize } from "../../hooks/useWindwSize";
 
 interface ProductsProps {
   className?: string;
   productImgClassName?: string;
   showNav?: true;
+  setClose?: React.Dispatch<boolean>;
 }
 
 const Product: React.FC<ProductsProps> = ({
   className,
   productImgClassName,
   showNav,
+  setClose,
 }) => {
   const { showSlides, setShowSlides } = React.useContext(SlideShowContext);
   const [index, setIndex] = React.useState(0);
   const [active, setActive] = React.useState<boolean | number>(false);
   const [currentImage, setCurrentImage] = React.useState(Product1);
+  const windowSize = useWindowSize();
 
   const productThumbnails = [
     { thumbnail: ProductThumbnail1, product: Product1 },
@@ -34,6 +38,7 @@ const Product: React.FC<ProductsProps> = ({
   ];
 
   const handleSlides = (indx: number, imgSrc: string) => {
+    setClose?.(false);
     setCurrentImage(imgSrc);
     setShowSlides(true);
     setActive(indx);
@@ -66,10 +71,10 @@ const Product: React.FC<ProductsProps> = ({
   return (
     <div className={className}>
       <div className="relative ">
-        {showNav && (
+        {(showNav || windowSize.width < 768) && (
           <div
             className={
-              "bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute translate-y-[11rem] translate-x-[-1rem] z-10"
+              "tablet:translate-x-[1rem] tablet:translate-y-[9.5rem] bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute translate-y-[11rem] translate-x-[-1rem] z-10"
             }
             onClick={prev}
           >
@@ -86,10 +91,10 @@ const Product: React.FC<ProductsProps> = ({
             )}
           />
         </div>
-        {showNav && (
+        {(showNav || windowSize.width < 768) && (
           <div
             className={
-              "bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute translate-y-[-14rem] translate-x-[23.6rem]"
+              "tablet:right-[1rem] tablet:translate-x-0 bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute translate-y-[-14rem] translate-x-[23.6rem]"
             }
             onClick={next}
           >
