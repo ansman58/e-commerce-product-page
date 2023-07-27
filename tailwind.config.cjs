@@ -21,6 +21,7 @@ module.exports = {
       counterBg: "hsla(0, 0%, 0%, 0.75)",
     },
     screens: {
+      mid: { max: "800px" },
       tablet: { max: "768px" },
       mobile: { max: "600px" },
     },
