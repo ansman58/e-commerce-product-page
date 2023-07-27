@@ -20,6 +20,10 @@ const Screen: React.FC<ScreenProps> = () => {
   const [showSlides, setShowSlides] = React.useState(false);
   const [itemsAdded, setItemsAdded] = React.useState(0);
 
+  const initialNumOfItems = Number(localStorage.getItem(NUM_OF_ORDERS));
+
+  const initialTotalAmount = Number(localStorage.getItem(TOTAL_PRICE));
+
   const onSubstract = () => {
     if (itemsAdded <= 0) return;
     setItemsAdded(itemsAdded - 1);
@@ -30,17 +34,25 @@ const Screen: React.FC<ScreenProps> = () => {
   };
 
   const onAddToCart = () => {
-    localStorage.setItem(NUM_OF_ORDERS, String(itemsAdded));
-    localStorage.setItem(TOTAL_PRICE, String(PRODUCT_PRICE * itemsAdded));
+    localStorage.setItem(NUM_OF_ORDERS, String(initialNumOfItems + itemsAdded));
+    localStorage.setItem(
+      TOTAL_PRICE,
+      String(PRODUCT_PRICE * itemsAdded + initialTotalAmount)
+    );
   };
 
   return (
-    <div className={clsx(styles.wrapper, "flex gap-[60px] my-[100px]")}>
+    <div
+      className={clsx(
+        styles.wrapper,
+        "flex gap-[60px] my-[100px] tablet:px-0 tablet:my-0 tablet:block"
+      )}
+    >
       <SlideShowContext.Provider value={{ showSlides, setShowSlides }}>
         <Product />
         {showSlides && <SlideShow />}
       </SlideShowContext.Provider>
-      <div className={clsx(styles.right, "my-auto")}>
+      <div className={"my-auto max-w-[400px] tablet:min-w-full tablet:px-3"}>
         <h5 className="text-primaryOrange mb-[30px] uppercase">
           Sneaker Company
         </h5>
@@ -51,7 +63,9 @@ const Screen: React.FC<ScreenProps> = () => {
           the weather can offer.
         </p>
 
-        <article className={clsx(styles.price, "mb-[30px]")}>
+        <article
+          className={"mb-[30px] tablet:mb-4 tablet:flex tablet:justify-between"}
+        >
           <div className="flex gap-2 items-center mb-[10px]">
             <span className="text-lg font-bold">
               ${PRODUCT_PRICE.toFixed(2)}
@@ -63,7 +77,7 @@ const Screen: React.FC<ScreenProps> = () => {
           <s className="text-grayishBlue ">$250.00</s>
         </article>
 
-        <article className={clsx(styles.btns, "flex gap-3")}>
+        <article className={"flex gap-3 tablet:block"}>
           <div className="basis-[30%] flex justify-between items-center bg-[#e7e4e4] h-[40px] px-[10px] rounded-[5px]">
             <button
               className="cursor-pointer basis-[40%] justify-self-start h-full"
@@ -88,10 +102,9 @@ const Screen: React.FC<ScreenProps> = () => {
             </button>
           </div>
           <button
-            className={clsx(
-              styles.cartBtn,
-              "bg-primaryOrange basis-[70%] flex justify-center items-center rounded-[5px] gap-3"
-            )}
+            className={
+              "bg-primaryOrange basis-[70%] flex justify-center items-center rounded-[5px] gap-3 tablet:w-full tablet:h-10 tablet:mt-[0.75rem]"
+            }
             onClick={onAddToCart}
           >
             <CartIcon fillColor="white" />

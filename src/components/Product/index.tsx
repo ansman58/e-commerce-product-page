@@ -9,7 +9,6 @@ import Product2 from "../../assets/image-product-2.jpg";
 import Product3 from "../../assets/image-product-3.jpg";
 import Product4 from "../../assets/image-product-4.jpg";
 import { SlideShowContext } from "../../store/contexts";
-import styles from "./Product.module.scss";
 
 interface ProductsProps {
   className?: string;
@@ -66,51 +65,41 @@ const Product: React.FC<ProductsProps> = ({
 
   return (
     <div className={className}>
-      <div className="relative">
+      <div className="relative ">
         {showNav && (
           <div
-            className={clsx(
-              styles.controlBtnContainer,
-              "bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer top-[50%] absolute left-[-10px] font-bold"
-            )}
+            className={
+              "bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute translate-y-[11rem] translate-x-[-1rem] z-10"
+            }
             onClick={prev}
           >
-            <span
-              className={clsx(styles.btn, "text-[black] hover:text-[#CA611C]")}
-            >
-              ❮
-            </span>
+            <span className={"text-[black] hover:text-[#ca611c]"}>❮</span>
           </div>
         )}
-        <div>
+        <div className="tablet:mb-[10px] relative">
           <img
             src={currentImage}
             alt="Product image"
             className={clsx(
               productImgClassName,
-              styles.productImg,
-              "rounded-md bg-black object-cover"
+              "rounded-md bg-black object-cover max-w-[400px] max-h-[400px] tablet:w-full tablet:max-w-full tablet:rounded-none"
             )}
           />
         </div>
         {showNav && (
           <div
-            className={clsx(
-              styles.controlBtnContainer,
-              "bg-[white] h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer bottom-[50%] absolute right-[-10px] font-bold"
-            )}
+            className={
+              "bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute translate-y-[-14rem] translate-x-[23.6rem]"
+            }
             onClick={next}
           >
-            <span className={clsx(styles.btn, "text-[black]")}>❯</span>
+            <span className={"text-[black] hover:text-[#ca611c]"}>❯</span>
           </div>
         )}
       </div>
 
       <div
-        className={clsx(
-          styles.thumbnails,
-          "flex items-center justify-between mt-[10px]"
-        )}
+        className={"flex items-center justify-between mt-[10px] tablet:hidden"}
       >
         {productThumbnails.map((el, index: number) => (
           <img
@@ -122,7 +111,7 @@ const Product: React.FC<ProductsProps> = ({
                 ["z-100"]: showSlides,
                 ["border-2 border-[white]"]: active === index,
               },
-              "max-w-[100px] max-h-[100px] rounded-[5px] hover:opacity-[0.67] hover:border-2 border-[#ca611c] cursor-pointer"
+              "max-w-[70px] max-h-[70px] rounded-[5px] hover:opacity-[0.67] hover:border-2 border-[#ca611c] cursor-pointer"
             )}
             onClick={() => handleSlides(index, el.product)}
           />
