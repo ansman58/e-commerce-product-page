@@ -5,8 +5,7 @@ import Product from "../components/Product";
 import SlideShow from "../components/SlideShow";
 import { SlideShowContext } from "../store/contexts";
 import { CartIcon } from "../components/SVGs";
-import styles from "./screen.module.scss";
-import clsx from "clsx";
+
 import {
   NUM_OF_ORDERS,
   PRODUCT_NAME,
@@ -42,12 +41,7 @@ const Screen: React.FC<ScreenProps> = () => {
   };
 
   return (
-    <div
-      className={clsx(
-        styles.wrapper,
-        "flex gap-[60px] my-[100px] tablet:px-0 tablet:my-0 tablet:block"
-      )}
-    >
+    <div className="flex gap-[60px] my-[100px] tablet:px-0 tablet:my-0 tablet:block">
       <SlideShowContext.Provider value={{ showSlides, setShowSlides }}>
         <Product />
         {showSlides && <SlideShow />}

@@ -19,6 +19,7 @@ module.exports = {
       white: "hsl(0, 0%, 100%)",
       black: "hsl(0, 0%, 0%)",
       counterBg: "hsla(0, 0%, 0%, 0.75)",
+      mobileMenuBg: "rgba(26, 24, 24, 0.7)"
     },
     screens: {
       mid: { max: "800px" },

@@ -1,14 +1,12 @@
 import React from "react";
-import clsx from "clsx";
-import style from "./MobileMenu.module.scss";
 import { CloseIcon } from "../SVGs";
 
 interface IMobileMenu {
   className?: string;
-  setShowMobileMenu?: React.Dispatch<boolean>
+  setShowMobileMenu?: React.Dispatch<boolean>;
 }
 
-const MobileMenu: React.FC<IMobileMenu> = ({ className, setShowMobileMenu }) => {
+const MobileMenu: React.FC<IMobileMenu> = () => {
   const menuList: string[] = [
     "Collections",
     "Men",
@@ -17,14 +15,9 @@ const MobileMenu: React.FC<IMobileMenu> = ({ className, setShowMobileMenu }) => 
     "Contact",
   ];
   return (
-    <div
-      className={clsx(
-        style.container,
-        "fixed z-50 min-h-screen top-0 left-0 w-full"
-      )}
-    >
+    <div className="fixed z-50 min-h-screen top-0 left-0 w-full max-w-full bg-mobileMenuBg">
       <nav className="bg-white w-[60%] min-h-screen p-4 font-semibold translate-x-[-100%] tablet:translate-x-0 transition-transform ease-in duration-300">
-        <ul className={clsx(style.menuList)}>
+        <ul>
           <li className="py-6">
             <CloseIcon fillColor="black" className="scale-[-1]" />
           </li>
