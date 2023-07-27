@@ -70,11 +70,11 @@ const Product: React.FC<ProductsProps> = ({
 
   return (
     <div className={className}>
-      <div className="relative ">
+      <div className="relative">
         {(showNav || windowSize.width < 768) && (
           <div
             className={
-              "tablet:translate-x-[1rem] tablet:translate-y-[9.5rem] bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute translate-y-[11rem] translate-x-[-1rem] z-10"
+              "tablet:translate-x-0 tablet:left-[1rem] tablet:translate-y-0 tablet:top-[40%] bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute translate-y-[11rem] translate-x-[-1rem] z-10"
             }
             onClick={prev}
           >
@@ -87,14 +87,14 @@ const Product: React.FC<ProductsProps> = ({
             alt="Product image"
             className={clsx(
               productImgClassName,
-              "rounded-md bg-black object-cover max-w-[400px] max-h-[400px] tablet:w-full tablet:max-w-full tablet:rounded-none"
+              "rounded-md bg-black object-cover max-w-[400px] max-h-[400px] tablet:w-full tablet:max-w-full tablet:rounded-none mid900:max-h-[350px]"
             )}
           />
         </div>
         {(showNav || windowSize.width < 768) && (
           <div
             className={
-              "tablet:right-[1rem] tablet:translate-x-0 bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute translate-y-[-14rem] translate-x-[23.6rem]"
+              "tablet:right-[1rem] tablet:translate-x-0 tablet:translate-y-0 tablet:bottom-[47%] bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute translate-y-[-14rem] translate-x-[23.6rem]"
             }
             onClick={next}
           >
