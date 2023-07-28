@@ -8,14 +8,16 @@ import ProductThumbnail4 from "../../assets/image-product-4-thumbnail.jpg";
 import Product2 from "../../assets/image-product-2.jpg";
 import Product3 from "../../assets/image-product-3.jpg";
 import Product4 from "../../assets/image-product-4.jpg";
-import { SlideShowContext } from "../../store/contexts";
 import { useWindowSize } from "../../hooks/useWindwSize";
+import style from "./styles.module.scss";
 
 interface ProductsProps {
   className?: string;
   productImgClassName?: string;
-  showNav?: true;
+  showNav?: boolean;
   setClose?: React.Dispatch<boolean>;
+  showSlides?: boolean;
+  setShowSlides?: React.Dispatch<boolean>;
 }
 
 const Product: React.FC<ProductsProps> = ({
@@ -23,8 +25,9 @@ const Product: React.FC<ProductsProps> = ({
   productImgClassName,
   showNav,
   setClose,
+  showSlides,
+  setShowSlides,
 }) => {
-  const { showSlides, setShowSlides } = React.useContext(SlideShowContext);
   const [index, setIndex] = React.useState(0);
   const [active, setActive] = React.useState<boolean | number>(false);
   const [currentImage, setCurrentImage] = React.useState(Product1);
@@ -40,7 +43,7 @@ const Product: React.FC<ProductsProps> = ({
   const handleSlides = (indx: number, imgSrc: string) => {
     setClose?.(false);
     setCurrentImage(imgSrc);
-    setShowSlides(true);
+    setShowSlides?.(true);
     setActive(indx);
   };
 
@@ -73,12 +76,13 @@ const Product: React.FC<ProductsProps> = ({
       <div className="relative">
         {(showNav || windowSize.width < 768) && (
           <div
-            className={
+            className={clsx(
+              style.prev,
               "tablet:translate-x-0 tablet:left-[1rem] tablet:translate-y-0 tablet:top-[40%] bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute translate-y-[11rem] translate-x-[-1rem] z-10"
-            }
+            )}
             onClick={prev}
           >
-            <span className={"text-[black] hover:text-[#ca611c]"}>❮</span>
+            <span className={"text-[black]"}>❮</span>
           </div>
         )}
         <div className="tablet:mb-[10px] relative">
@@ -93,12 +97,13 @@ const Product: React.FC<ProductsProps> = ({
         </div>
         {(showNav || windowSize.width < 768) && (
           <div
-            className={
+            className={clsx(
+              style.next,
               "tablet:right-[1rem] tablet:translate-x-0 tablet:translate-y-0 tablet:bottom-[47%] bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute translate-y-[-14rem] translate-x-[23.6rem]"
-            }
+            )}
             onClick={next}
           >
-            <span className={"text-[black] hover:text-[#ca611c]"}>❯</span>
+            <span className={"text-[black] "}>❯</span>
           </div>
         )}
       </div>
@@ -113,8 +118,10 @@ const Product: React.FC<ProductsProps> = ({
             alt="product thumnail"
             className={clsx(
               {
-                // ["z-100"]: showSlides,
-                ["filter opacity-[40%] border-primaryOrange border-2"]: active === index,
+                // ["filter opacity-[40%] border-primaryOrange border-2"]:
+                //   showSlides && active === index,
+                ["filter opacity-[40%] border-primaryOrange border-2"]:
+                  active === index,
               },
               "max-w-[70px] max-h-[70px] rounded-[5px] hover:filter hover:opacity-[50%] cursor-pointer"
             )}
