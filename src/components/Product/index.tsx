@@ -118,8 +118,6 @@ const Product: React.FC<ProductsProps> = ({
             alt="product thumnail"
             className={clsx(
               {
-                // ["filter opacity-[40%] border-primaryOrange border-2"]:
-                //   showSlides && active === index,
                 ["filter opacity-[40%] border-primaryOrange border-2"]:
                   active === index,
               },
