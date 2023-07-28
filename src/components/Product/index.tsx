@@ -8,6 +8,7 @@ import ProductThumbnail4 from "../../assets/image-product-4-thumbnail.jpg";
 import Product2 from "../../assets/image-product-2.jpg";
 import Product3 from "../../assets/image-product-3.jpg";
 import Product4 from "../../assets/image-product-4.jpg";
+import { SlideShowContext } from "../../store/contexts";
 import { useWindowSize } from "../../hooks/useWindwSize";
 
 interface ProductsProps {
@@ -23,6 +24,7 @@ const Product: React.FC<ProductsProps> = ({
   showNav,
   setClose,
 }) => {
+  const { showSlides, setShowSlides } = React.useContext(SlideShowContext);
   const [index, setIndex] = React.useState(0);
   const [active, setActive] = React.useState<boolean | number>(false);
   const [currentImage, setCurrentImage] = React.useState(Product1);
@@ -38,6 +40,7 @@ const Product: React.FC<ProductsProps> = ({
   const handleSlides = (indx: number, imgSrc: string) => {
     setClose?.(false);
     setCurrentImage(imgSrc);
+    setShowSlides(true);
     setActive(indx);
   };
 
@@ -110,8 +113,8 @@ const Product: React.FC<ProductsProps> = ({
             alt="product thumnail"
             className={clsx(
               {
-                ["filter opacity-[40%] border-primaryOrange border-2"]:
-                  active === index,
+                // ["z-100"]: showSlides,
+                ["filter opacity-[40%] border-primaryOrange border-2"]: active === index,
               },
               "max-w-[70px] max-h-[70px] rounded-[5px] hover:filter hover:opacity-[50%] cursor-pointer"
             )}
