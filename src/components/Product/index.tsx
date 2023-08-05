@@ -18,6 +18,8 @@ interface ProductsProps {
   setClose?: React.Dispatch<boolean>;
   showSlides?: boolean;
   setShowSlides?: React.Dispatch<boolean>;
+  // currentImage?: string;
+  // setCurrentImage?: React.Dispatch<string>;
 }
 
 const Product: React.FC<ProductsProps> = ({
@@ -27,6 +29,8 @@ const Product: React.FC<ProductsProps> = ({
   setClose,
   showSlides,
   setShowSlides,
+  // currentImage,
+  // setCurrentImage,
 }) => {
   const [index, setIndex] = React.useState(0);
   const [active, setActive] = React.useState<boolean | number>(false);
@@ -110,7 +114,10 @@ const Product: React.FC<ProductsProps> = ({
 
       <div className="flex items-center justify-between mt-[10px] tablet:hidden">
         {productThumbnails.map((el, index: number) => (
-          <button className="outline-none" onClick={() => handleSlides(index, el.product)}>
+          <button
+            className="outline-none"
+            onClick={() => handleSlides(index, el.product)}
+          >
             <img
               key={index}
               src={el.thumbnail}

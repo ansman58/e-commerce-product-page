@@ -1,13 +1,18 @@
 import React from "react";
 import Product from "../Product";
 import { CloseIcon } from "../SVGs";
+import Product1 from "../../assets/image-product-1.jpg";
+
 
 interface ISlideShow {
   close: boolean;
   setClose: React.Dispatch<boolean>;
+  defaultImage?: string;
 }
 
-const SlideShow: React.FC<ISlideShow> = ({ close, setClose }) => {
+const SlideShow: React.FC<ISlideShow> = ({ close, setClose, defaultImage }) => {
+  const [currentImage, setCurrentImage] = React.useState(Product1);
+
   return (
     <>
       {!close && (
@@ -24,6 +29,8 @@ const SlideShow: React.FC<ISlideShow> = ({ close, setClose }) => {
               className="max-w-[400px]"
               productImgClassName="max-w-[100%] "
               showNav
+              // currentImage={currentImage}
+              // setCurrentImage={setCurrentImage}
             />
           </div>
         </div>

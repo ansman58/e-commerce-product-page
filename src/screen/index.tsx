@@ -29,6 +29,7 @@ const Screen: React.FC<ScreenProps> = ({
   const [showSlides, setShowSlides] = React.useState(false);
   const [itemsAdded, setItemsAdded] = React.useState(0);
   const [close, setClose] = React.useState(false);
+  const [action, setAction] = React.useState<"add" | "minus" | "">("");
 
   // const initialNumOfItems = Number(localStorage.getItem(NUM_OF_ORDERS));
   // const initialTotalAmount = Number(localStorage.getItem(TOTAL_PRICE));
@@ -36,16 +37,26 @@ const Screen: React.FC<ScreenProps> = ({
   const onSubstract = () => {
     if (itemsAdded <= 0) return;
     setItemsAdded(itemsAdded - 1);
+    setAction("minus");
   };
 
   const onAdd = () => {
     setItemsAdded(itemsAdded + 1);
+    setAction("add");
   };
 
   const onAddToCart = () => {
-    setNoOfOrders(noOfOrders + itemsAdded);
+    if (!action && !noOfOrders) return;
+    if (action === "add" && noOfOrders) {
+      setNoOfOrders(itemsAdded);
+    }
+    if (action === "add" && !noOfOrders) {
+      setNoOfOrders(noOfOrders + itemsAdded);
+    }
+    if (action === "minus") {
+      setNoOfOrders(itemsAdded);
+    }
     setTotalPrice(Number(PRODUCT_PRICE * noOfOrders + itemsAdded));
-    setItemsAdded(0)
     // localStorage.setItem(NUM_OF_ORDERS, String(noOfOrders));
     // localStorage.setItem(TOTAL_PRICE, String(totalPrice));
   };
