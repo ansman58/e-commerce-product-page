@@ -34,7 +34,7 @@ const Header: React.FC<IHeader> = ({ noOfOrders, totalPrice }) => {
     <nav className="relative tablet:px-6">
       <div className="flex justify-between py-5">
         <div className="basis-[80%] flex items-center tablet:basis-[60%]">
-          <FaBars className="hidden tablet:block" onClick={toggleMobileMenu} />
+          <FaBars className="hidden tablet:block" onClick={toggleMobileMenu} role="button"/>
           <h1 className="basis-[20%] font-[700] text-3xl box-content tablet:ml-3 tablet:text-[24px]">
             sneakers
           </h1>

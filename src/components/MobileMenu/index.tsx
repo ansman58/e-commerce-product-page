@@ -20,11 +20,13 @@ const MobileMenu: React.FC<IMobileMenu> = ({ setShowMobileMenu }) => {
       <nav className="bg-white w-[60%] min-h-screen p-4 font-semibold translate-x-[-100%] tablet:translate-x-0 transition-transform ease-in duration-[1s]">
         <ul>
           <li className="py-6">
-            <CloseIcon
-              fillColor="black"
-              className="scale-[]"
-              onBtnClick={() => setShowMobileMenu?.(false)}
-            />
+            <button className="outline-none">
+              <CloseIcon
+                fillColor="black"
+                className="scale-[0.9]"
+                onBtnClick={() => setShowMobileMenu?.(false)}
+              />
+            </button>
           </li>
           {menuList.map((item: string, index: number) => (
             <li

@@ -75,15 +75,15 @@ const Product: React.FC<ProductsProps> = ({
     <div className={className}>
       <div className="relative">
         {(showNav || windowSize.width < 768) && (
-          <div
+          <button
             className={clsx(
               style.prev,
-              "tablet:translate-x-0 tablet:left-[1rem] tablet:translate-y-0 tablet:top-[40%] bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute translate-y-[11rem] translate-x-[-1rem] z-10"
+              " bg-[white] outline-none aspect-square h-[40px] w-[40px] rounded-full flex items-center z-[3] justify-center cursor-pointer font-bold absolute top-[45%] left-[-1rem]  tablet:left-[1rem]"
             )}
             onClick={prev}
           >
             <span className={"text-[black]"}>❮</span>
-          </div>
+          </button>
         )}
         <div className="tablet:mb-[10px] relative">
           <img
@@ -91,40 +91,39 @@ const Product: React.FC<ProductsProps> = ({
             alt="Product image"
             className={clsx(
               productImgClassName,
-              "rounded-md bg-black object-cover max-w-[400px] max-h-[400px] tablet:w-full tablet:max-w-full tablet:rounded-none mid900:max-h-[350px]"
+              "rounded-md bg-black object-cover max-w-[400px] max-h-[400px] tablet:w-full tablet:max-w-full tablet:rounded-none tablet:max-h-[350px]"
             )}
           />
         </div>
         {(showNav || windowSize.width < 768) && (
-          <div
+          <button
             className={clsx(
               style.next,
-              "tablet:right-[1rem] tablet:translate-x-0 tablet:translate-y-0 tablet:bottom-[47%] bg-[white] aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute translate-y-[-14rem] translate-x-[23.6rem]"
+              "bg-[white] outline-none aspect-square h-[40px] w-[40px] rounded-full flex items-center justify-center cursor-pointer font-bold absolute top-[45%] right-[-1rem] tablet:right-[1rem]"
             )}
             onClick={next}
           >
             <span className={"text-[black] "}>❯</span>
-          </div>
+          </button>
         )}
       </div>
 
-      <div
-        className={"flex items-center justify-between mt-[10px] tablet:hidden"}
-      >
+      <div className="flex items-center justify-between mt-[10px] tablet:hidden">
         {productThumbnails.map((el, index: number) => (
-          <img
-            key={index}
-            src={el.thumbnail}
-            alt="product thumnail"
-            className={clsx(
-              {
-                ["filter opacity-[40%] border-primaryOrange border-2"]:
-                  active === index,
-              },
-              "max-w-[70px] max-h-[70px] rounded-[5px] hover:filter hover:opacity-[50%] cursor-pointer"
-            )}
-            onClick={() => handleSlides(index, el.product)}
-          />
+          <button className="outline-none" onClick={() => handleSlides(index, el.product)}>
+            <img
+              key={index}
+              src={el.thumbnail}
+              alt="product thumnail"
+              className={clsx(
+                {
+                  ["filter opacity-[40%] border-primaryOrange border-2"]:
+                    active === index,
+                },
+                "max-w-[70px] max-h-[70px] rounded-[5px] hover:filter hover:opacity-[50%] cursor-pointer"
+              )}
+            />
+          </button>
         ))}
       </div>
     </div>

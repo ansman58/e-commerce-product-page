@@ -45,6 +45,7 @@ const Screen: React.FC<ScreenProps> = ({
   const onAddToCart = () => {
     setNoOfOrders(noOfOrders + itemsAdded);
     setTotalPrice(Number(PRODUCT_PRICE * noOfOrders + itemsAdded));
+    setItemsAdded(0)
     // localStorage.setItem(NUM_OF_ORDERS, String(noOfOrders));
     // localStorage.setItem(TOTAL_PRICE, String(totalPrice));
   };
