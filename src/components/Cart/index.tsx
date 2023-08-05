@@ -23,7 +23,7 @@ const Cart = ({ className, noOfOrders, totalPrice }: CartProps) => {
     <div
       className={clsx(
         className,
-        "bg-white shadow-lg pt-[10px] grid min-w-[250px] rounded-[5px] z-10 tablet:w-full tablet:mt-8 tablet:max-w-[90%] tablet:right-[unset]"
+        "bg-white shadow-lg pt-[10px] grid min-w-[250px] rounded-[5px] z-10 mobile:mx-auto tablet:w-full tablet:mt-8 tablet:max-w-[90%] tablet:right-[unset]"
       )}
     >
       <h2 className="mb-[10px] pl-[20px] font-[700]">Cart</h2>
