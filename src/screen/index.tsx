@@ -47,16 +47,8 @@ const Screen: React.FC<ScreenProps> = ({
 
   const onAddToCart = () => {
     if (!action && !noOfOrders) return;
-    if (action === "add" && noOfOrders) {
-      setNoOfOrders(itemsAdded);
-    }
-    if (action === "add" && !noOfOrders) {
-      setNoOfOrders(noOfOrders + itemsAdded);
-    }
-    if (action === "minus") {
-      setNoOfOrders(itemsAdded);
-    }
-    setTotalPrice(Number(PRODUCT_PRICE * noOfOrders + itemsAdded));
+    setNoOfOrders(itemsAdded);
+    setTotalPrice(Number(PRODUCT_PRICE * itemsAdded));
     // localStorage.setItem(NUM_OF_ORDERS, String(noOfOrders));
     // localStorage.setItem(TOTAL_PRICE, String(totalPrice));
   };
@@ -97,7 +89,7 @@ const Screen: React.FC<ScreenProps> = ({
         <article className={"flex gap-3 tablet:block"}>
           <div className="basis-[30%] flex justify-between items-center bg-[#e7e4e4] h-[40px] px-[10px] rounded-[5px]">
             <button
-              className="cursor-pointer basis-[40%] justify-self-start h-full"
+              className="cursor-pointer basis-[40%] justify-self-start h-full outline-none"
               onClick={onSubstract}
             >
               <img
@@ -120,7 +112,7 @@ const Screen: React.FC<ScreenProps> = ({
           </div>
           <button
             className={
-              "bg-primaryOrange basis-[70%] flex justify-center items-center rounded-[5px] gap-3 tablet:w-full tablet:h-10 tablet:mt-[0.75rem]"
+              "bg-primaryOrange basis-[70%] flex outline-none justify-center items-center rounded-[5px] gap-3 tablet:w-full tablet:h-10 tablet:mt-[0.75rem]"
             }
             onClick={onAddToCart}
           >
